@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 11:47:33 by galiza            #+#    #+#             */
-/*   Updated: 2019/05/22 19:42:32 by galiza           ###   ########.fr       */
+/*   Updated: 2019/05/22 21:03:04 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_width(int width, int flag)
 {
-	while (width--)
+	while (width-- > 1)
 		flag ? ft_putchar('0') : ft_putchar(' ');
 }
 
@@ -28,21 +28,22 @@ int		ft_print_spaces(const char *fmt, int len)
 	minus = 0;
 	flag = 0;
 	i = 0;
-	while ((fmt[len + i] < 'a' || fmt[len + i] > 'z')
-			&& (fmt[len + i] < 'A' || fmt[len + i] > 'Z'))
+	width = 0;
+	while (ft_strchr("#-+* 0123456789", fmt[len + i]))
 	{
 		if (fmt[len + i] == '-')
 			minus = 1;
 		i++;
 	}
-	while ((fmt[len + i] < '0' || fmt[len + i] > '9') && i > len)
+	while ((fmt[len + i] < '1' || fmt[len + i] > '9') && i > 0)
 		i--;
-	while (fmt[len + i] >= '0' || fmt[len + i] <= '9')
+	while ((fmt[len + i] >= '0' && fmt[len + i] <= '9')
+			&& fmt[len + i])
 		i--;
 	i++;
 	if (fmt[len + i] == '0' && !minus)
 		flag = 1;
-	width = ft_atoi(fmt + len);
+	width = ft_atoi(fmt + len + i);
 	print_width(--width, flag);
 	return (width);
 }

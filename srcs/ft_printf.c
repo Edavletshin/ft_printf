@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 17:28:51 by galiza            #+#    #+#             */
-/*   Updated: 2019/05/22 17:24:35 by galiza           ###   ########.fr       */
+/*   Updated: 2019/05/22 21:03:06 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,20 +167,20 @@ int		ft_printf_aux(const char *format, va_list v_l, int len,
 		else
 		{
 			c = (unsigned char)format[curr_chr];
-			while (c == '.' || c == '-' || c == '+' ||
-					c == '*' || (c >= '0' && c <= '9'))
+			while (ft_strchr("#-+* 0123456789", format[curr_chr + i]))	
 				c = (unsigned char)(format[curr_chr + i++]);
+			c = (unsigned char)(format[curr_chr + i]);
 			if (ft_print_dispatch[c] == NULL)
 			{
 				if (c == '\0')
 					break;
 				ft_putchar(c);
-				len++;
+				curr_chr++;
 			}
 			else if (c == '%')
 			{
 				ft_putchar('%');
-				len++;
+				curr_chr++;
 			}
 			else
 				return ft_print_dispatch[c](format, v_l, curr_chr);
