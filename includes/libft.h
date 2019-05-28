@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 18:28:42 by galiza            #+#    #+#             */
-/*   Updated: 2019/05/22 12:04:51 by galiza           ###   ########.fr       */
+/*   Updated: 2019/05/28 21:44:06 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,27 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdio.h>
+# define ABS(Value)	((Value < 0) ? (-Value) : (Value))
+
+# define HH			1
+# define H			2
+# define L			4
+# define LL			8
+
+typedef	struct		s_flags
+{
+	int				minus;
+	int				plus;
+	int				dot;
+	int				zero;
+	int				len;
+	int				blank;
+	int				l_int;
+	int				padding;
+	long long int	total;
+	int				t_dot;
+	int				flags;
+}					t_flags;
 
 typedef	struct		s_list
 {
@@ -74,9 +95,10 @@ char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);
+void				ft_putnstr(char const *s, int n);
 void				ft_putendl(char const *s);
-int					ft_putnbr_base(int n, unsigned int base, const char *digits);
-int					ft_putnbr(int n);
+int					ft_putnbr_base(long long int n, int base, const char *digits);
+int					ft_putnbr(long long int n);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
@@ -94,8 +116,13 @@ int					ft_pow(int nb, int power);
 int					ft_count_if(char **tab, int (*f) (char*));
 int					ft_printf(const char *fmt, ...);
 /* printf utils */
-int					ft_print_c(const char *fmt, va_list ap, int len);
+int					ft_print_c(const char *fmt, va_list ap, int curr_chr, int len);
+int					ft_print_s(const char *fmt, va_list ap, int curr_chr, int len);
+int					ft_print_d(const char *fmt, va_list ap, int curr_chr, int len);
 int					ft_printf_aux(const char *fmt, va_list ap, int curr_chr, int len);
-int					ft_print_spaces(const char *fmt, int len);
+int					ft_print_spaces(t_flags flags, int size_int);
+void				ft_get_int(const char *fmt, int len, t_flags *flags);
+void				ft_get_keys(const char *fmt, int len, t_flags *flags);
+int					ft_print_keys(t_flags flags, int size_int);
 
 #endif

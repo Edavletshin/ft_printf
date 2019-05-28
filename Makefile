@@ -6,7 +6,7 @@
 #    By: galiza <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/04 19:55:13 by galiza            #+#    #+#              #
-#    Updated: 2019/05/22 12:06:49 by galiza           ###   ########.fr        #
+#    Updated: 2019/05/28 21:24:41 by galiza           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRC = ft_memset.c\
 	ft_itoa.c \
 	ft_putchar.c \
 	ft_putstr.c \
+	ft_putnstr.c \
 	ft_putendl.c \
 	ft_putnbr.c \
 	ft_putchar_fd.c \
@@ -76,6 +77,8 @@ SRC = ft_memset.c\
 	ft_printf.c
 
 PRINTF = print_c.c\
+		 print_s.c\
+		 print_d.c\
 		 print_spaces.c
 
 OBJ = $(SRC:.c=.o)
@@ -87,10 +90,10 @@ OBJDIR = objs
 
 OBJS = $(addprefix $(OBJDIR)/, $(OBJ))
 OBJSPRINTF = $(addprefix $(OBJDIR)/, $(OBJPRINTF))
-HEADER = -I includes
+HEADER = -I ./includes
 
 CC = gcc
-CFLAGS = -c -Wall -Wextra -Werror
+CFLAGS = -c -Werror -Wextra -Wall
 
 NAME = libftprintf.a
 
@@ -99,13 +102,13 @@ all: $(NAME)
 $(OBJDIR)/%.o: $(PRINTFDIR)/%.c
 	@$(CC) $(CFLAGS) $(HEADER) $< -o $@
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
+$(OBJDIR)/%.o: $(SRCDIR)/%.c 
 	@/bin/mkdir -p $(OBJDIR)
 	@$(CC) $(CFLAGS) $(HEADER) $< -o $@
 
 $(NAME): $(OBJS) $(OBJSPRINTF)
-	ar rcs $@ $^
-	ranlib $@
+	@ar rcs $@ $^
+	@ranlib $@
 
 clean:
 	rm -rf $(OBJDIR)

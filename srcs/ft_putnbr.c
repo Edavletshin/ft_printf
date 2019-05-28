@@ -6,48 +6,39 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 20:20:54 by galiza            #+#    #+#             */
-/*   Updated: 2019/05/18 19:23:30 by galiza           ###   ########.fr       */
+/*   Updated: 2019/05/28 20:41:50 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_putnbr_base(int n, unsigned int base, const char *digits)
+int		ft_putnbr_base(long long int n, int base, const char *digits)
 {
 	long long int	num;
 	int				res;
 
+	num = 0;
 	res = 1;
 	if (n < 0)
 	{
 		res++;
 		ft_putchar('-');
-		num = (long long int)-n;
+		num = (num + n) * -1;
 	}
 	else
-		num = (long long int)n;
+		num = n;
 	if (num >= base)
 		res += ft_putnbr_base(num / base, base, digits);
-	ft_putchar(digits[n % base]);
+	else if (num < 0)
+		res += ft_putnbr_base(num / base * -1, base, digits);
+	if (num < 0)
+		ft_putchar(digits[num % base * -1]);
+	else
+		ft_putchar(digits[num % base]);
 	return (res);
 }
 
-int		ft_putnbr(int n)
+int		ft_putnbr(long long int n)
 {
-	long long int	num;
-	int				res;
-
-	res = 1;
-	if (n < 0)
-	{
-		res++;
-		ft_putchar('-');
-		num = (long long int)-n;
-	}
-	else
-		num = (long long int)n;
-	if (num >= 10)
-		res += ft_putnbr(num / 10);
-	ft_putchar(n % 10 + '0');
-	return (res) ;
+	return (ft_putnbr_base(n, 10, "0123456789"));
 }
