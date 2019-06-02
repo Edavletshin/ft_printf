@@ -6,7 +6,7 @@
 #    By: galiza <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/04 19:55:13 by galiza            #+#    #+#              #
-#    Updated: 2019/05/28 21:24:41 by galiza           ###   ########.fr        #
+#    Updated: 2019/05/29 20:03:41 by galiza           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,8 @@ SRC = ft_memset.c\
 	ft_putnstr.c \
 	ft_putendl.c \
 	ft_putnbr.c \
+	ft_putun_nbr.c \
+	ft_putchar_fd.c \
 	ft_putchar_fd.c \
 	ft_putstr_fd.c \
 	ft_putendl_fd.c \
@@ -78,7 +80,14 @@ SRC = ft_memset.c\
 
 PRINTF = print_c.c\
 		 print_s.c\
+		 print_p.c\
+		 print_f.c\
 		 print_d.c\
+		 print_o.c\
+		 print_u.c\
+		 print_x.c\
+		 print_bigx.c\
+		 print_percent.c\
 		 print_spaces.c
 
 OBJ = $(SRC:.c=.o)

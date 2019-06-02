@@ -1,48 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_d.c                                          :+:      :+:    :+:   */
+/*   print_f.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 19:20:04 by galiza            #+#    #+#             */
-/*   Updated: 2019/05/29 16:53:05 by galiza           ###   ########.fr       */
+/*   Updated: 2019/05/31 15:05:34 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		size(long long int i)
+int		ft_print_f(const char *fmt, va_list ap, int curr_chr, int len)
 {
-	int	tmp;
-
-	tmp = 0;
-	if (!i)
-		return (0);
-	while ((i /= 10) != 0)
-		tmp++;
-	return (tmp + 1);
-}
-
-int		ft_print_d(const char *fmt, va_list ap, int curr_chr, int len)
-{
-	t_flags		flags;
-	int			s;
-	long long int	n;
+	t_flags			flags;
+	int				s;
+	double			n;
+	int				accur;
 
 	ft_get_keys(fmt, curr_chr, &flags);
+	accur = flags.t_dot;
+	flags.t_dot = 0;
 	if (flags.flags & LL)
-		n = va_arg(ap, long long int);
+		n = va_arg(ap, double);
 	else if (flags.flags & L)
-		n = va_arg(ap, long long int);
-	else if (flags.flags & H && !(flags.flags & HH))
-		n = (short int)va_arg(ap, int);
-	else if (flags.flags & HH)
-		n = (signed char)va_arg(ap, int);
+		n = va_arg(ap, double);
 	else
-		n = (int)va_arg(ap, int);
+		n = va_arg(ap, double);
 	s = size(n);
-	flags.total = n;
+	flags.flt = n;
 	if (n < 0 || flags.plus)
 		s++;
 	if (((fmt[curr_chr + flags.l_int] == '0' && ft_atoi(fmt + curr_chr
@@ -55,6 +42,7 @@ fmt[curr_chr + flags.l_int - 2] == '0')) && !flags.minus && !flags.dot &&
 		len += ft_print_keys(flags, s);
 		if (flags.t_dot > 0 || (n != 0) || !flags.dot)
 			len += ft_putnbr(ABS(n));
+		len += ft_print_accur(flags, accur);
 		len += ft_print_spaces(flags, s);
 	}
 	else if (flags.zero)
@@ -63,6 +51,7 @@ fmt[curr_chr + flags.l_int - 2] == '0')) && !flags.minus && !flags.dot &&
 		len += ft_print_spaces(flags, s);
 		if (flags.t_dot > 0 || (n != 0) || !flags.dot)
 			len += ft_putnbr(ABS(n));
+		len += ft_print_accur(flags, accur);
 	}
 	else
 	{
@@ -70,6 +59,7 @@ fmt[curr_chr + flags.l_int - 2] == '0')) && !flags.minus && !flags.dot &&
 		len += ft_print_keys(flags, s);
 		if (flags.t_dot > 0 || (n != 0) || !flags.dot)
 			len += ft_putnbr(ABS(n));
+		len += ft_print_accur(flags, accur);
 	}
 	return (ft_printf_aux(fmt, ap, curr_chr + flags.len + 1, len));
 }
