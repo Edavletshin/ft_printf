@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 17:28:51 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/10 14:35:43 by galiza           ###   ########.fr       */
+/*   Updated: 2019/06/20 15:41:13 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		ft_printf_aux(const char *fmt, va_list v_l, int curr_chr, int len)
 		{
 			ft_get_keys(fmt, curr_chr, &flags);
 			c = (unsigned char)(fmt[curr_chr + flags.len]);
-			if (c == '\0')
+			if (fmt[curr_chr + flags.len - 1] == '\0')
 				break ;
 			if (g_ft_print_dispatch[c] == NULL)
 				function(flags, &curr_chr, fmt, &len);

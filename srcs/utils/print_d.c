@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 19:20:04 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/19 21:07:12 by galiza           ###   ########.fr       */
+/*   Updated: 2019/06/20 15:41:33 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ int						ft_print_d(const char *fmt, va_list ap,
 
 	ft_get_keys(fmt, curr_chr, &flags);
 	n = if_n(flags, ap);
-	s = ft_get_len(flags);
 	flags.total = n;
+	s = ft_get_len(flags);
 	if (((fmt[curr_chr + flags.l_int] == '0' && ft_atoi(fmt + curr_chr +
 	flags.l_int) != 0) || (fmt[curr_chr + flags.l_int - 1] == '+' &&
 	fmt[curr_chr + flags.l_int - 2] == '0')) && !flags.minus && !flags.dot &&

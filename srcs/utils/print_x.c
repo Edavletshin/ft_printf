@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 14:18:37 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/09 21:51:54 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/06/20 15:02:08 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ int								ft_print_x(const char *fmt, va_list ap,
 
 	ft_get_keys(fmt, curr_chr, &flags);
 	n = if_n(flags, ap);
-	s = size(n);
 	flags.un_tot = n;
+	s = ft_get_len(flags);
 	if (flags.plus)
 		s++;
 	if (flags.h_tag)

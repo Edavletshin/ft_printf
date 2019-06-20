@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 19:20:04 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/09 21:15:13 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/06/20 17:47:02 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static int		if_zero(t_flags flags, int len, int accur, double n)
 {
 	int			s;
 
-	s = size(n);
+	s = ft_get_len(flags);
+	printf("%d", s);
 	if (n < 0 || flags.plus)
 		s++;
 	len += ft_print_keys(flags, s);
@@ -44,9 +45,8 @@ static int		if_minus(t_flags flags, int len, int accur, double n)
 {
 	int			s;
 
-	s = size(n);
-	if (n < 0 || flags.plus)
-		s++;
+	s = ft_get_len(flags);
+	printf("%d", s);
 	if (flags.minus)
 	{
 		len += ft_print_keys(flags, s);

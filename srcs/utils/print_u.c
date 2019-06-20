@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 19:20:04 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/10 14:53:46 by galiza           ###   ########.fr       */
+/*   Updated: 2019/06/20 15:10:19 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int								un_size(unsigned long long int i)
 	int							tmp;
 
 	tmp = 0;
-	if (!i)
-		return (0);
 	while ((i /= 10) != 0)
 		tmp++;
 	return (tmp + 1);
@@ -70,9 +68,10 @@ int								ft_print_u(const char *fmt, va_list ap,
 
 	ft_get_keys(fmt, curr_chr, &flags);
 	n = if_n(flags, ap);
-	s = un_size(n);
 	flags.un_tot = n;
 	flags.plus = 0;
+	flags.blank = 0;
+	s = ft_get_len(flags);
 	if (if_long(fmt, curr_chr, flags))
 		flags.zero = 1;
 	if (flags.minus)

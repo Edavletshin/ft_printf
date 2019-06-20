@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 14:18:37 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/10 14:55:20 by galiza           ###   ########.fr       */
+/*   Updated: 2019/06/20 17:37:50 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int						if_minus(t_flags flags, int len, int s,
 		ft_putchar('0');
 		len++;
 	}
-	if (flags.dot > 0 || (n != 0) || !flags.dot)
+	if (flags.t_dot > 0 || (n != 0) || !flags.dot)
 		len += ft_putun_nbr_base(ABS(n), 8, "01234567");
 	len += ft_print_spaces(flags, s);
 	return (len);
@@ -64,7 +64,7 @@ static int						if_else(t_flags flags, int len, int s,
 {
 	len += ft_print_spaces(flags, s);
 	len += ft_print_keys(flags, s);
-	if (flags.h_tag)
+	if (flags.h_tag) 
 	{
 		ft_putchar('0');
 		len++;
@@ -83,11 +83,11 @@ int								ft_print_o(const char *fmt, va_list ap,
 
 	ft_get_keys(fmt, curr_chr, &flags);
 	n = if_n(flags, ap);
-	s = un_size(n);
+	flags.un_tot = n;
+	flags.plus = 0;	
+	s = ft_get_len(flags);
 	if (flags.h_tag)
 		s++;
-	flags.un_tot = n;
-	flags.plus = 0;
 	if (if_long(fmt, curr_chr, flags))
 		flags.zero = 1;
 	if (flags.minus)

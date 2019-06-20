@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 17:56:29 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/19 21:07:10 by galiza           ###   ########.fr       */
+/*   Updated: 2019/06/20 15:02:30 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	ft_get_int(const char *fmt, int curr_chr, t_flags *flags)
 
 int		ft_print_keys(t_flags flags, int size_int)
 {
+	int	tmp;
 	int	i;
 
 	i = 0;
@@ -80,10 +81,12 @@ int		ft_print_keys(t_flags flags, int size_int)
 		ft_putchar(' ');
 		i = 1;
 	}
-	flags.t_dot -= size(flags.total) + !(flags.t_dot > 0 || (flags.total != 0) || !flags.dot);
-	if (flags.t_dot < 0)
-		flags.t_dot = 0;
-	i += flags.t_dot;
+	tmp = size(flags.total) > un_size(flags.un_tot) ? size(flags.total) :
+		un_size(flags.un_tot);
+	flags.t_dot -= tmp + !(flags.t_dot > 0 || (flags.total != 0
+				|| flags.un_tot != 0) || !flags.dot);
+	if (flags.t_dot > 0)
+		i += flags.t_dot;
 	while (flags.t_dot-- > 0)
 		ft_putchar('0');
 	return (i);
@@ -95,18 +98,18 @@ int		ft_get_len(t_flags flags)
 	int	i;
 
 	i = 0;
-	if ((flags.total < 0 && ABS(flags.total) > 0) || 1 / flags.flt < 0)
+	if (flags.total < 0 || 1 / flags.flt < 0)
 		i = 1;
-	else if (flags.plus && flags.total >= 0)
+	else if (flags.plus)
 		i = 1;
-	else if (flags.blank && flags.total >= 0)
-		i = 1;
-	printf("%d", i);
-	tmp = size(flags.total) - !(flags.t_dot > 0 || (flags.total != 0) || !flags.dot);
-	printf(" %d",tmp);
-	flags.t_dot = flags.t_dot - tmp - i;
+	else if (flags.blank)
+		i = 1;;
+	tmp = size(flags.total) > un_size(flags.un_tot) ? size(flags.total) :
+		un_size(flags.un_tot);
+	tmp -= !(flags.t_dot > 0 || (flags.total != 0
+				|| flags.un_tot != 0) || !flags.dot);
+	flags.t_dot = flags.t_dot - tmp;
 	if (flags.t_dot < 0)
 		flags.t_dot = 0;
-	printf(" %d|",flags.t_dot);
 	return (flags.t_dot + i + tmp);
 }
