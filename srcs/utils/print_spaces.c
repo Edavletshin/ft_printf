@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 17:56:29 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/20 15:02:30 by galiza           ###   ########.fr       */
+/*   Updated: 2019/06/20 21:44:32 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,10 @@
 
 int		ft_print_accur(t_flags flags, int accur)
 {
-	int	tmp;
-	int	size;
 	int	len;
 
-	size = 10;
 	len = 0;
-	tmp = (int)flags.flt;
-	flags.flt -= (float)tmp;
-	flags.flt = ABS(flags.flt);
-	if (accur)
+	if (accur || (!accur && flags.h_tag))
 	{
 		ft_putchar('.');
 		len++;

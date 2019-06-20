@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 19:20:04 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/20 21:16:48 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/06/20 21:41:53 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static int		if_minus(t_flags flags, int len, int accur, double n)
 	if (flags.minus)
 	{
 		len += ft_print_keys(flags, s);
-		if (flags.t_dot > 0 || (n != 0) || !flags.dot)
 			len += ft_putnbr(ABS(n));
 		len += ft_print_accur(flags, accur);
 		len += ft_print_spaces(flags, s + accur + 1);
@@ -59,7 +58,6 @@ static int		if_minus(t_flags flags, int len, int accur, double n)
 	{
 		len += ft_print_spaces(flags, s + accur + 1);
 		len += ft_print_keys(flags, s);
-		if (flags.t_dot > 0 || (n != 0) || !flags.dot)
 			len += ft_putnbr(ABS(n));
 		len += ft_print_accur(flags, accur);
 	}
