@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 16:33:54 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/06/09 20:41:46 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/06/20 21:02:05 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int			print_fract(long double n, int len, int accur)
 		check = check_long_str(line, accur);
 		time++;
 	}
+
 	rouding(line, accur);
 	len += putstr_frac(line, accur);
 	return (len);
