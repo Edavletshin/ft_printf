@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 19:20:04 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/20 21:41:53 by galiza           ###   ########.fr       */
+/*   Updated: 2019/06/21 21:35:03 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,12 @@ static int		if_zero(t_flags flags, int len, int accur, double n)
 	int			s;
 
 	s = ft_get_len(flags);
-	if (n < 0 || flags.plus)
-		s++;
+	s += (size((int)n));
 	len += ft_print_keys(flags, s);
 	len += ft_print_spaces(flags, s + accur + 1);
-	if (flags.t_dot > 0 || (n != 0) || !flags.dot)
-		len += ft_putnbr(ABS(n));
+	len += ft_putnbr(ABS(n));
 	len += ft_print_accur(flags, accur);
+	len = print_fract(n, len, accur);
 	return (len);
 }
 
@@ -45,11 +44,13 @@ static int		if_minus(t_flags flags, int len, int accur, double n)
 	int			s;
 
 	s = ft_get_len(flags);
+	s += (size((int)n));
 	if (flags.minus)
 	{
 		len += ft_print_keys(flags, s);
-			len += ft_putnbr(ABS(n));
+		len += ft_putnbr(ABS(n));
 		len += ft_print_accur(flags, accur);
+		len = print_fract(n, len, accur);
 		len += ft_print_spaces(flags, s + accur + 1);
 	}
 	else if (flags.zero)
@@ -58,8 +59,9 @@ static int		if_minus(t_flags flags, int len, int accur, double n)
 	{
 		len += ft_print_spaces(flags, s + accur + 1);
 		len += ft_print_keys(flags, s);
-			len += ft_putnbr(ABS(n));
+		len += ft_putnbr(ABS(n));
 		len += ft_print_accur(flags, accur);
+		len = print_fract(n, len, accur);
 	}
 	return (len);
 }
@@ -68,7 +70,7 @@ int				if_long(const char *fmt, int curr_chr, t_flags flags)
 {
 	if (((fmt[curr_chr + flags.l_int] == '0' && ft_atoi(fmt + curr_chr
 	+ flags.l_int) != 0) || (fmt[curr_chr + flags.l_int - 1] == '+' &&
-	fmt[curr_chr + flags.l_int - 2] == '0')) && !flags.minus && !flags.dot &&
+	fmt[curr_chr + flags.l_int - 2] == '0')) && !flags.minus &&
 		flags.padding > 0)
 		return (1);
 	else
@@ -92,10 +94,14 @@ int				ft_print_f(const char *fmt, va_list ap, int curr_chr, int len)
 		flags.t_dot = 0;
 	}
 	n = if_n(flags, ap);
+	if (n != n)
+	{
+		ft_putstr("nan");
+		return (ft_printf_aux(fmt, ap, curr_chr + flags.len + 1, len + 3));
+	}
 	flags.flt = n;
 	if (if_long(fmt, curr_chr, flags))
 		flags.zero = 1;
 	len = if_minus(flags, len, accur, n);
-	len = print_fract(n, len, accur);
 	return (ft_printf_aux(fmt, ap, curr_chr + flags.len + 1, len));
 }

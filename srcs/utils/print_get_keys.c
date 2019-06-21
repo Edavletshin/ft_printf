@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 17:56:29 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/09 22:13:06 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/06/21 21:34:59 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,9 @@ void		ft_get_keys(const char *fmt, int curr_chr, t_flags *flags)
 	(*flags).len = i;
 	ft_get_int(fmt, curr_chr, flags);
 	(*flags).padding = ft_atoi(fmt + curr_chr + (*flags).l_int);
+}
+
+int		fltsize(double total)
+{
+	return (size((int)total));
 }
