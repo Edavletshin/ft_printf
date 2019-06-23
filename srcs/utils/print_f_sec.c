@@ -99,7 +99,6 @@ int			print_fract(long double n, int len, int accur)
 		check = check_long_str(line, accur);
 		time++;
 	}
-
 	rouding(line, accur);
 	len += putstr_frac(line, accur);
 	return (len);

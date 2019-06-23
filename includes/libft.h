@@ -161,4 +161,5 @@ int					un_size(unsigned long long int i);
 */
 int					print_fract(long double n, int len, int accur);
 int					if_long(const char *fmt, int curr_chr, t_flags flags);
+int                space_nan(int len, t_flags flags);
 #endif

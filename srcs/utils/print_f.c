@@ -28,7 +28,6 @@ static double	if_n(t_flags flags, va_list ap)
 static int		if_zero(t_flags flags, int len, int accur, double n)
 {
 	int			s;
-
 	s = ft_get_len(flags);
 	s += (size((int)n));
 	len += ft_print_keys(flags, s);
@@ -96,7 +95,7 @@ int				ft_print_f(const char *fmt, va_list ap, int curr_chr, int len)
 	n = if_n(flags, ap);
 	if (n != n)
 	{
-		ft_putstr("nan");
+	    space_nan(len, flags);
 		return (ft_printf_aux(fmt, ap, curr_chr + flags.len + 1, len + 3));
 	}
 	flags.flt = n;
