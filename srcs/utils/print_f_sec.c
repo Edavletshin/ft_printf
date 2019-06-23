@@ -71,6 +71,8 @@ static void	rouding(char *line, int accur)
 		{
 			line[q] = '0';
 			line[q - 1]++;
+			if (line[q - 1] == 58 && q - 1 == 0)
+			    line[q - 1] = '0';
 			if (q == accur)
 				flag = 1;
 		}
