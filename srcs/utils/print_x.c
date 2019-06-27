@@ -25,7 +25,7 @@ static unsigned long long int	if_n(t_flags flags, va_list ap)
 	else if (flags.flags & HH)
 		n = (unsigned char)va_arg(ap, int);
 	else
-		n = va_arg(ap, unsigned int);
+		n =va_arg(ap, unsigned int);
 	return (n);
 }
 
