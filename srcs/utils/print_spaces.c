@@ -34,8 +34,12 @@ int		ft_print_spaces(t_flags flags, int size_int)
 	if (width < 0)
 		width = 0;
 	tmp = width;
-	while (tmp-- > 0)
+	while (tmp > 0)
+	{
 		flags.zero ? ft_putchar('0') : ft_putchar(' ');
+		tmp--;
+	}
+
 	return (width);
 }
 
