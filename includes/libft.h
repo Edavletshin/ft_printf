@@ -102,6 +102,8 @@ void				ft_putnstr(char const *s, int n);
 void				ft_putendl(char const *s);
 int					ft_putnbr_base(long long int n, int base,
 					const char *digits);
+int					ft_putun_nbr_base_not_print(unsigned long long int n, unsigned int base,
+					const char *digits);
 int					ft_putun_nbr_base(unsigned long long int n,
 					unsigned int base, const char *digits);
 int					ft_putun_nbr(unsigned long long int n);

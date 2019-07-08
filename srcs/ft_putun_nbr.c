@@ -28,3 +28,14 @@ int		ft_putun_nbr(unsigned long long int n)
 {
 	return (ft_putun_nbr_base(n, 10, "0123456789"));
 }
+
+int		ft_putun_nbr_base_not_print(unsigned long long int n, unsigned int base,
+							 const char *digits)
+{
+	int						res;
+
+	res = 1;
+	if (n >= base)
+		res += ft_putun_nbr_base_not_print(n / base, base, digits);
+	return (res);
+}

@@ -77,6 +77,7 @@ void		ft_get_keys(const char *fmt, int curr_chr, t_flags *flags)
 	(*flags).len = i;
 	ft_get_int(fmt, curr_chr, flags);
 	(*flags).padding = ft_atoi(fmt + curr_chr + (*flags).l_int);
+//	printf("\n pad = %d\n", (*flags).padding);
 }
 
 int		fltsize(double total)
