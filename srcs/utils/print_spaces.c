@@ -101,9 +101,10 @@ int		ft_get_len(t_flags flags)
 	else if (flags.plus)
 		i = 1;
 	else if (flags.blank)
-		i = 1;;
+		i = 1;
 	tmp = size(flags.total) > un_size(flags.un_tot) ? size(flags.total) :
 		un_size(flags.un_tot);
+//	printf("\nsss= %d \n", tmp);
 	tmp -= !(flags.t_dot > 0 || (flags.total != 0
 				|| flags.un_tot != 0) || !flags.dot);
 	flags.t_dot = flags.t_dot - tmp;

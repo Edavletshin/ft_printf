@@ -84,7 +84,8 @@ int								ft_print_x(const char *fmt, va_list ap,
 	ft_get_keys(fmt, curr_chr, &flags);
 	n = if_n(flags, ap);
 	flags.un_tot = n;
-	s = ft_get_len(flags);
+	s = ft_get_len_x(flags);
+//	printf("\ns=%d\n", s);
 	if (flags.plus)
 		s++;
 	if (flags.h_tag)

@@ -95,7 +95,7 @@ int								ft_print_bigx(const char *fmt,
 	ft_get_keys(fmt, curr_chr, &flags);
 	n = if_n(flags, ap);
 	flags.un_tot = n;
-	s = ft_get_len(flags);
+	s = ft_get_len_x(flags);
 	if (flags.plus)
 		s++;
 	if (flags.h_tag)

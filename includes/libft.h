@@ -157,11 +157,14 @@ int					ft_print_keys(t_flags flags, int size_int);
 int					ft_get_len(t_flags flags);
 int					size(long long int i);
 int					un_size(unsigned long long int i);
+int					un_size_x(unsigned long long int i);
+int					size_x(long long int i);
+int					ft_get_len_x(t_flags flags);
 
 /*
 ** ----------------------------- Printf norminette------------------------------
 */
 int					print_fract(long double n, int len, int accur);
 int					if_long(const char *fmt, int curr_chr, t_flags flags);
-int                space_nan(int len, t_flags flags);
+int					space_nan(int len, t_flags flags);
 #endif

@@ -35,3 +35,46 @@ int		ft_print_p(const char *fmt, va_list ap, int curr_chr, int len)
 	}
 	return (ft_printf_aux(fmt, ap, curr_chr + flags.len + 1, len));
 }
+
+
+int		ft_get_len_x(t_flags flags)
+{
+	int	tmp;
+	int	i;
+
+	i = 0;
+	if (flags.total < 0 || 1 / flags.flt < 0)
+		i = 1;
+	else if (flags.plus)
+		i = 1;
+	else if (flags.blank)
+		i = 1;
+	tmp = size_x(flags.total) > un_size_x(flags.un_tot) ? size_x(flags.total) :
+		  un_size_x(flags.un_tot);
+	tmp -= !(flags.t_dot > 0 || (flags.total != 0
+								 || flags.un_tot != 0) || !flags.dot);
+	flags.t_dot = flags.t_dot - tmp;
+	if (flags.t_dot < 0)
+		flags.t_dot = 0;
+	return (flags.t_dot + i + tmp);
+}
+
+int		un_size_x(unsigned long long int i)
+{
+	int	tmp;
+
+	tmp = 0;
+	while ((i /= 16) != 0)
+		tmp++;
+	return (tmp + 1);
+}
+
+int			size_x(long long int i)
+{
+	int		tmp;
+
+	tmp = 0;
+	while ((i /= 16) != 0)
+		tmp++;
+	return (tmp + 1);
+}
