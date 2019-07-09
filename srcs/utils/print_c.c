@@ -37,12 +37,12 @@ fmt[curr_chr + flags.l_int - 2] == '0')) && !flags.minus && flags.padding > 0)
 	return (ft_printf_aux(fmt, ap, curr_chr + flags.len + 1, len + 1));
 }
 
-int			size(long long int i)
+int			size(long long int i, int base)
 {
 	int		tmp;
 
 	tmp = 0;
-	while ((i /= 10) != 0)
+	while ((i /= base) != 0)
 		tmp++;
 	return (tmp + 1);
 }

@@ -40,6 +40,7 @@ static void	if_other(t_flags *flags, int curr_chr, const char *fmt)
 	int		q;
 
 	q = 0;
+	(*flags).base = 10;
 	while (ft_strchr("#-+*.hl 0123456789", fmt[curr_chr + q]))
 	{
 		if (fmt[curr_chr + q] == '-')
@@ -77,10 +78,9 @@ void		ft_get_keys(const char *fmt, int curr_chr, t_flags *flags)
 	(*flags).len = i;
 	ft_get_int(fmt, curr_chr, flags);
 	(*flags).padding = ft_atoi(fmt + curr_chr + (*flags).l_int);
-//	printf("\n pad = %d\n", (*flags).padding);
 }
 
-int		fltsize(double total)
+int		fltsize(double total, int base)
 {
-	return (size((int)total));
+	return (size((int)total, base));
 }

@@ -29,7 +29,7 @@ static int		if_zero(t_flags flags, int len, int accur, double n)
 {
 	int			s;
 	s = ft_get_len(flags);
-	s += (size((int)n));
+	s += (size((int)n, flags.base));
 	len += ft_print_keys(flags, s);
 	len += ft_print_spaces(flags, s + accur + 1);
 	len += ft_putnbr(ABS(n));
@@ -43,7 +43,7 @@ static int		if_minus(t_flags flags, int len, int accur, double n)
 	int			s;
 
 	s = ft_get_len(flags);
-	s += (size((int)n));
+	s += (size((int)n, flags.base));
 	if (flags.minus)
 	{
 		len += ft_print_keys(flags, s);

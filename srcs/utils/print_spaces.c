@@ -79,8 +79,8 @@ int		ft_print_keys(t_flags flags, int size_int)
 		ft_putchar(' ');
 		i = 1;
 	}
-	tmp = size(flags.total) > un_size(flags.un_tot) ? size(flags.total) :
-		un_size(flags.un_tot);
+	tmp = size(flags.total, flags.base) > un_size(flags.un_tot, flags.base) ? size(flags.total, flags.base) :
+		un_size(flags.un_tot, flags.base);
 	flags.t_dot -= tmp + !(flags.t_dot > 0 || (flags.total != 0
 				|| flags.un_tot != 0) || !flags.dot);
 	if (flags.t_dot > 0)
@@ -102,9 +102,8 @@ int		ft_get_len(t_flags flags)
 		i = 1;
 	else if (flags.blank)
 		i = 1;
-	tmp = size(flags.total) > un_size(flags.un_tot) ? size(flags.total) :
-		un_size(flags.un_tot);
-//	printf("\nsss= %d \n", tmp);
+	tmp = size(flags.total, flags.base) > un_size(flags.un_tot, flags.base) ? size(flags.total, flags.base) :
+		un_size(flags.un_tot, flags.base);
 	tmp -= !(flags.t_dot > 0 || (flags.total != 0
 				|| flags.un_tot != 0) || !flags.dot);
 	flags.t_dot = flags.t_dot - tmp;

@@ -82,10 +82,10 @@ int								ft_print_x(const char *fmt, va_list ap,
 	unsigned long long int		n;
 
 	ft_get_keys(fmt, curr_chr, &flags);
+	flags.base = 16;
 	n = if_n(flags, ap);
 	flags.un_tot = n;
-	s = ft_get_len_x(flags);
-//	printf("\ns=%d\n", s);
+	s = ft_get_len(flags);
 	if (flags.plus)
 		s++;
 	if (flags.h_tag)

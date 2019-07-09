@@ -90,7 +90,7 @@ PRINTF = print_c.c\
 		 print_bigx.c\
 		 print_percent.c\
 		 print_f_sec.c\
-		  print_f_three.c\
+		 print_f_three.c\
 		 print_spaces.c\
 		 print_get_keys.c
 

@@ -12,12 +12,12 @@
 
 #include "libft.h"
 
-int								un_size(unsigned long long int i)
+int								un_size(unsigned long long int i, int base)
 {
 	int							tmp;
 
 	tmp = 0;
-	while ((i /= 10) != 0)
+	while ((i /= base) != 0)
 		tmp++;
 	return (tmp + 1);
 }

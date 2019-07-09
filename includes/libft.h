@@ -41,6 +41,7 @@ typedef	struct		s_flags
 	double			flt;
 	int				t_dot;
 	int				flags;
+	int				base;
 }					t_flags;
 
 typedef	struct		s_list
@@ -155,11 +156,8 @@ void				ft_get_int(const char *fmt, int len, t_flags *flags);
 void				ft_get_keys(const char *fmt, int len, t_flags *flags);
 int					ft_print_keys(t_flags flags, int size_int);
 int					ft_get_len(t_flags flags);
-int					size(long long int i);
-int					un_size(unsigned long long int i);
-int					un_size_x(unsigned long long int i);
-int					size_x(long long int i);
-int					ft_get_len_x(t_flags flags);
+int					size(long long int i, int base);
+int					un_size(unsigned long long int i, int base);
 
 /*
 ** ----------------------------- Printf norminette------------------------------

@@ -33,7 +33,7 @@ static int						if_minus(t_flags flags, int len, int s,
 		unsigned long long int n)
 {
 	len += ft_print_keys(flags, s);
-	if (flags.h_tag)
+	if (flags.h_tag && n != 0)
 	{
 		ft_putchar('0');
 		len++;
@@ -49,7 +49,7 @@ static int						if_zero(t_flags flags, int len, int s,
 {
 	len += ft_print_keys(flags, s);
 	len += ft_print_spaces(flags, s);
-	if (flags.h_tag)
+	if (flags.h_tag && n != 0)
 	{
 		ft_putchar('0');
 		len++;
@@ -62,6 +62,7 @@ static int						if_zero(t_flags flags, int len, int s,
 static int						if_else(t_flags flags, int len, int s,
 		unsigned long long int n)
 {
+//	printf("\n s=%d \n", s);
 	len += ft_print_spaces(flags, s);
 	len += ft_print_keys(flags, s);
 	if (flags.h_tag && n != 0)
@@ -82,6 +83,7 @@ int								ft_print_o(const char *fmt, va_list ap,
 	unsigned long long int	n;
 
 	ft_get_keys(fmt, curr_chr, &flags);
+	flags.base = 8;
 	n = if_n(flags, ap);
 	flags.un_tot = n;
 	flags.plus = 0;	
