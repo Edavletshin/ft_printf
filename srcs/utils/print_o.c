@@ -65,13 +65,14 @@ static int						if_else(t_flags flags, int len, int s,
 //	printf("\n s=%d \n", s);
 	len += ft_print_spaces(flags, s);
 	len += ft_print_keys(flags, s);
-	if (flags.h_tag && n != 0)
+	if (flags.h_tag)
 	{
 		ft_putchar('0');
 		len++;
 	}
-	if (flags.t_dot > 0 || (n != 0) || !flags.dot)
-			len += ft_putun_nbr_base(ABS(n), 8, "01234567");
+	if ((flags.t_dot > 0 || (n != 0) || !flags.dot) && (!flags.h_tag || (flags.h_tag && n != 0)))
+		len += ft_putun_nbr_base(ABS(n), 8, "01234567");
+
 	return (len);
 }
 
