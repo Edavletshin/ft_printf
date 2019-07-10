@@ -77,7 +77,10 @@ void		ft_get_keys(const char *fmt, int curr_chr, t_flags *flags)
 	}
 	(*flags).len = i;
 	ft_get_int(fmt, curr_chr, flags);
-	(*flags).padding = ft_atoi(fmt + curr_chr + (*flags).l_int);
+	if (fmt[curr_chr] > 64)
+		(*flags).padding = ft_atoi(fmt + (curr_chr - 1) + (*flags).l_int);
+	else
+		(*flags).padding = ft_atoi(fmt + curr_chr + (*flags).l_int);
 }
 
 int		fltsize(double total, int base)

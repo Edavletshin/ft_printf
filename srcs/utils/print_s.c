@@ -16,6 +16,7 @@ static int		if_minus(t_flags flags, int len, const char *s, int strlen)
 {
 	if (flags.minus)
 	{
+
 		if (flags.t_dot > 0)
 			ft_putnstr(s, flags.t_dot);
 		else
@@ -24,6 +25,7 @@ static int		if_minus(t_flags flags, int len, const char *s, int strlen)
 	}
 	else
 	{
+		len += ft_print_spaces(flags, strlen);
 		if (flags.t_dot > 0)
 			ft_putnstr(s, flags.t_dot);
 		else
