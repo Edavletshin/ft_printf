@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 19:20:04 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/20 15:10:19 by galiza           ###   ########.fr       */
+/*   Updated: 2019/07/14 16:50:01 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int								ft_print_u(const char *fmt, va_list ap,
 	flags.plus = 0;
 	flags.blank = 0;
 	s = ft_get_len(flags);
-	if (if_long(fmt, curr_chr, flags))
+	if (if_long(fmt, curr_chr, flags) && !flags.dot)
 		flags.zero = 1;
 	if (flags.minus)
 		len = if_minus(flags, len, s, n);

@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 14:18:37 by galiza            #+#    #+#             */
-/*   Updated: 2019/07/14 14:57:29 by galiza           ###   ########.fr       */
+/*   Updated: 2019/07/14 19:05:47 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int						if_minus(t_flags flags, int len, int s,
 		unsigned long long int n)
 {
 	len += ft_print_keys(flags, s);
-	if (flags.h_tag && n != 0)
+	if (flags.h_tag && n)
 	{
 		ft_putchar('0');
 		len++;
@@ -49,7 +49,7 @@ static int						if_zero(t_flags flags, int len, int s,
 {
 	len += ft_print_keys(flags, s);
 	len += ft_print_spaces(flags, s);
-	if (flags.h_tag && n != 0)
+	if (flags.h_tag && n)
 	{
 		ft_putchar('0');
 		len++;
@@ -64,13 +64,12 @@ static int						if_else(t_flags flags, int len, int s,
 {
 	len += ft_print_spaces(flags, s);
 	len += ft_print_keys(flags, s);
-	if (flags.h_tag)
+	if (flags.h_tag && n)
 	{
 		ft_putchar('0');
 		len++;
 	}
-	if ((flags.t_dot > 0 || (n != 0) || !flags.dot)
-			&& (!flags.h_tag || (flags.h_tag && n != 0)))
+	if (flags.t_dot > 0 || (n != 0) || !flags.dot)
 		len += ft_putun_nbr_base(ABS(n), 8, "01234567");
 	return (len);
 }
@@ -88,9 +87,9 @@ int								ft_print_o(const char *fmt, va_list ap,
 	flags.un_tot = n;
 	flags.plus = 0;
 	s = ft_get_len(flags);
-	if (flags.h_tag)
+	if (flags.h_tag && n)
 		s++;
-	if (if_long(fmt, curr_chr, flags))
+	if (if_long(fmt, curr_chr, flags) && !flags.dot)
 		flags.zero = 1;
 	if (flags.minus)
 		len = if_minus(flags, len, s, n);

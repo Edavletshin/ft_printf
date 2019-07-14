@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 14:18:37 by galiza            #+#    #+#             */
-/*   Updated: 2019/07/14 15:11:02 by galiza           ###   ########.fr       */
+/*   Updated: 2019/07/14 18:59:36 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int						if_minus(t_flags flags, int len, int s,
 		len += 2;
 	}
 	len += ft_print_keys(flags, s);
-	if (flags.dot > 0 || (n != 0) || !flags.dot)
+	if (flags.t_dot > 0 || (n != 0) || !flags.dot)
 		len += ft_putun_nbr_base(ABS(n), 16, "0123456789abcdef");
 	len += ft_print_spaces(flags, s);
 	return (len);
@@ -88,9 +88,9 @@ int								ft_print_x(const char *fmt, va_list ap,
 	s = ft_get_len(flags);
 	if (flags.plus)
 		s++;
-	if (flags.h_tag)
+	if (flags.h_tag && flags.un_tot)
 		s += 2;
-	if (if_long(fmt, curr_chr, flags))
+	if (if_long(fmt, curr_chr, flags) && !flags.dot)
 		flags.zero = 1;
 	if (flags.minus)
 		len = if_minus(flags, len, s, n);

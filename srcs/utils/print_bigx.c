@@ -6,67 +6,11 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 14:18:37 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/20 15:02:25 by galiza           ###   ########.fr       */
+/*   Updated: 2019/07/14 19:05:48 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static int						if_flags_else(t_flags flags, int len,
-		unsigned long long int n, int s)
-{
-	len += ft_print_spaces(flags, s);
-	if (flags.h_tag && flags.un_tot)
-	{
-		ft_putstr("0X");
-		len += 2;
-	}
-	len += ft_print_keys(flags, s);
-	if (flags.t_dot > 0 || (n != 0) || !flags.dot)
-		len += ft_putun_nbr_base(ABS(n), 16, "0123456789ABCDEF");
-	return (len);
-}
-
-static int						if_flags_zero(t_flags flags, int len,
-		unsigned long long int n, int s)
-{
-	if (flags.h_tag && flags.un_tot)
-	{
-		ft_putstr("0X");
-		len += 2;
-	}
-	len += ft_print_keys(flags, s);
-	len += ft_print_spaces(flags, s);
-	if (flags.t_dot > 0 || (n != 0) || !flags.dot)
-		len += ft_putun_nbr_base(ABS(n), 16, "0123456789ABCDEF");
-	return (len);
-}
-
-static int						if_flags_minus(t_flags flags, int len,
-		unsigned long long int n, int s)
-{
-	if (flags.minus)
-	{
-		if (flags.h_tag && flags.un_tot)
-		{
-			ft_putstr("0X");
-			len += 2;
-		}
-		len += ft_print_keys(flags, s);
-		if (flags.dot > 0 || (n != 0) || !flags.dot)
-			len += ft_putun_nbr_base(ABS(n), 16, "0123456789ABCDEF");
-		len += ft_print_spaces(flags, s);
-	}
-	else if (flags.zero)
-	{
-		len = if_flags_zero(flags, len, n, s);
-	}
-	else
-	{
-		len = if_flags_else(flags, len, n, s);
-	}
-	return (len);
-}
 
 static unsigned long long int	if_n(t_flags flags, va_list ap)
 {
@@ -85,8 +29,53 @@ static unsigned long long int	if_n(t_flags flags, va_list ap)
 	return (n);
 }
 
-int								ft_print_bigx(const char *fmt,
-		va_list ap, int curr_chr, int len)
+static int						if_minus(t_flags flags, int len, int s,
+								unsigned long long int n)
+{
+	if (flags.h_tag && flags.un_tot)
+	{
+		ft_putstr("0X");
+		len += 2;
+	}
+	len += ft_print_keys(flags, s);
+	if (flags.t_dot > 0 || (n != 0) || !flags.dot)
+		len += ft_putun_nbr_base(ABS(n), 16, "0123456789ABCDEF");
+	len += ft_print_spaces(flags, s);
+	return (len);
+}
+
+static int						if_zero(t_flags flags, int len, int s,
+								unsigned long long int n)
+{
+	if (flags.h_tag && flags.un_tot)
+	{
+		ft_putstr("0X");
+		len += 2;
+	}
+	len += ft_print_keys(flags, s);
+	len += ft_print_spaces(flags, s);
+	if (flags.t_dot > 0 || (n != 0) || !flags.dot)
+		len += ft_putun_nbr_base(ABS(n), 16, "0123456789ABCDEF");
+	return (len);
+}
+
+static int						if_else(t_flags flags, int len, int s,
+								unsigned long long int n)
+{
+	len += ft_print_spaces(flags, s);
+	if (flags.h_tag && flags.un_tot)
+	{
+		ft_putstr("0X");
+		len += 2;
+	}
+	len += ft_print_keys(flags, s);
+	if (flags.t_dot > 0 || (n != 0) || !flags.dot)
+		len += ft_putun_nbr_base(ABS(n), 16, "0123456789ABCDEF");
+	return (len);
+}
+
+int								ft_print_bigx(const char *fmt, va_list ap,
+								int curr_chr, int len)
 {
 	t_flags						flags;
 	int							s;
@@ -99,13 +88,15 @@ int								ft_print_bigx(const char *fmt,
 	s = ft_get_len(flags);
 	if (flags.plus)
 		s++;
-	if (flags.h_tag)
+	if (flags.h_tag && flags.un_tot)
 		s += 2;
-	if (((fmt[curr_chr + flags.l_int] == '0' && ft_atoi(fmt + curr_chr +
-	flags.l_int) != 0) || (fmt[curr_chr + flags.l_int - 1] == '+' &&
-	fmt[curr_chr + flags.l_int - 2] == '0')) && !flags.minus && !flags.dot &&
-		flags.padding > 0)
+	if (if_long(fmt, curr_chr, flags) && !flags.dot)
 		flags.zero = 1;
-	len = if_flags_minus(flags, len, n, s);
+	if (flags.minus)
+		len = if_minus(flags, len, s, n);
+	else if (flags.zero)
+		len = if_zero(flags, len, s, n);
+	else
+		len = if_else(flags, len, s, n);
 	return (ft_printf_aux(fmt, ap, curr_chr + flags.len + 1, len));
 }
