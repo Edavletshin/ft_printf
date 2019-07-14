@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 17:56:29 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/21 21:34:59 by galiza           ###   ########.fr       */
+/*   Updated: 2019/07/14 15:19:48 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	if_other(t_flags *flags, int curr_chr, const char *fmt)
 
 	q = 0;
 	(*flags).base = 10;
-	while (ft_strchr("#-+*.hl 0123456789", fmt[curr_chr + q]))
+	while (ft_strchr("#-+*.hlL 0123456789", fmt[curr_chr + q]))
 	{
 		if (fmt[curr_chr + q] == '-')
 			(*flags).minus = 1;
@@ -63,7 +63,7 @@ void		ft_get_keys(const char *fmt, int curr_chr, t_flags *flags)
 
 	i = stan_param(flags);
 	if_other(flags, curr_chr, fmt);
-	while (ft_strchr("#-+*.hl 0123456789", fmt[curr_chr + i]))
+	while (ft_strchr("#-+*.hlL 0123456789", fmt[curr_chr + i]))
 	{
 		if (fmt[curr_chr + i] == 'h' && fmt[curr_chr + i + 1] == 'h')
 			(*flags).flags |= HH;
@@ -73,6 +73,8 @@ void		ft_get_keys(const char *fmt, int curr_chr, t_flags *flags)
 			(*flags).flags |= L;
 		if (fmt[curr_chr + i] == 'l' && fmt[curr_chr + i + 1] == 'l')
 			(*flags).flags |= LL;
+		if (fmt[curr_chr + i] == 'L')
+			(*flags).flags |= LLL;
 		i++;
 	}
 	(*flags).len = i;
@@ -83,7 +85,7 @@ void		ft_get_keys(const char *fmt, int curr_chr, t_flags *flags)
 		(*flags).padding = ft_atoi(fmt + curr_chr + (*flags).l_int);
 }
 
-int		fltsize(double total, int base)
+int			fltsize(double total, int base)
 {
 	return (size((int)total, base));
 }

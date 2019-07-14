@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 18:28:42 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/20 14:32:00 by galiza           ###   ########.fr       */
+/*   Updated: 2019/07/14 15:17:37 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define H			2
 # define L			4
 # define LL			8
+# define LLL		16
 
 typedef	struct		s_flags
 {

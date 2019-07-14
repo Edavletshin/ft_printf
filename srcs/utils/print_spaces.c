@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 17:56:29 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/21 21:30:19 by galiza           ###   ########.fr       */
+/*   Updated: 2019/07/14 15:14:33 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int		ft_print_spaces(t_flags flags, int size_int)
 		flags.zero ? ft_putchar('0') : ft_putchar(' ');
 		tmp--;
 	}
-
 	return (width);
 }
 
@@ -62,24 +61,18 @@ int		ft_print_keys(t_flags flags, int size_int)
 	int	tmp;
 	int	i;
 
-	i = 0;
+	i = 1;
 	size_int = 0;
 	if ((flags.total < 0 && ABS(flags.total) > 0) || 1 / flags.flt < 0)
-	{
 		ft_putchar('-');
-		i = 1;
-	}
 	else if (flags.plus && flags.total >= 0)
-	{
 		ft_putchar('+');
-		i = 1;
-	}
 	else if (flags.blank && flags.total >= 0)
-	{
 		ft_putchar(' ');
-		i = 1;
-	}
-	tmp = size(flags.total, flags.base) > un_size(flags.un_tot, flags.base) ? size(flags.total, flags.base) :
+	else
+		i = 0;
+	tmp = size(flags.total, flags.base) >
+		un_size(flags.un_tot, flags.base) ? size(flags.total, flags.base) :
 		un_size(flags.un_tot, flags.base);
 	flags.t_dot -= tmp + !(flags.t_dot > 0 || (flags.total != 0
 				|| flags.un_tot != 0) || !flags.dot);
@@ -102,7 +95,8 @@ int		ft_get_len(t_flags flags)
 		i = 1;
 	else if (flags.blank)
 		i = 1;
-	tmp = size(flags.total, flags.base) > un_size(flags.un_tot, flags.base) ? size(flags.total, flags.base) :
+	tmp = size(flags.total, flags.base) >
+		un_size(flags.un_tot, flags.base) ? size(flags.total, flags.base) :
 		un_size(flags.un_tot, flags.base);
 	tmp -= !(flags.t_dot > 0 || (flags.total != 0
 				|| flags.un_tot != 0) || !flags.dot);

@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 20:42:11 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/09 21:27:11 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/07/14 14:56:29 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static int		if_minus(t_flags flags, int len, const char *s, int strlen)
 {
 	if (flags.minus)
 	{
-
 		if (flags.t_dot > 0)
 			ft_putnstr(s, flags.t_dot);
 		else

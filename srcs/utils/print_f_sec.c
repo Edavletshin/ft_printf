@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 16:33:54 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/06/21 21:29:40 by galiza           ###   ########.fr       */
+/*   Updated: 2019/07/14 14:54:26 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	rouding(char *line, int accur)
 			line[q] = '0';
 			line[q - 1]++;
 			if (line[q - 1] == 58 && q - 1 == 0)
-			    line[q - 1] = '0';
+				line[q - 1] = '0';
 			if (q == accur)
 				flag = 1;
 		}

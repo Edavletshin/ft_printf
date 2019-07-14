@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 19:20:04 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/21 21:35:03 by galiza           ###   ########.fr       */
+/*   Updated: 2019/07/14 15:20:01 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ static double	if_n(t_flags flags, va_list ap)
 {
 	double		n;
 
-	if (flags.flags & LL)
+	if (flags.flags & LLL)
+		n = va_arg(ap, long double);
+	else if (flags.flags & LL)
 		n = va_arg(ap, double);
 	else if (flags.flags & L)
 		n = va_arg(ap, double);
@@ -28,6 +30,7 @@ static double	if_n(t_flags flags, va_list ap)
 static int		if_zero(t_flags flags, int len, int accur, double n)
 {
 	int			s;
+
 	s = ft_get_len(flags);
 	s += (size((int)n, flags.base));
 	len += ft_print_keys(flags, s);
@@ -81,21 +84,19 @@ int				ft_print_f(const char *fmt, va_list ap, int curr_chr, int len)
 	t_flags		flags;
 	double		n;
 	int			accur;
+
 	ft_get_keys(fmt, curr_chr, &flags);
 	if (flags.t_dot <= 0 && flags.t_dot != -1)
 		accur = 6;
+	else if (flags.t_dot == -1)
+		accur = 0;
 	else
-	{
-		if (flags.t_dot == -1)
-			accur = 0;
-		else
-			accur = flags.t_dot;
-		flags.t_dot = 0;
-	}
+		accur = flags.t_dot;
+	flags.t_dot = 0;
 	n = if_n(flags, ap);
 	if (n != n)
 	{
-	    space_nan(len, flags);
+		space_nan(len, flags);
 		return (ft_printf_aux(fmt, ap, curr_chr + flags.len + 1, len + 3));
 	}
 	flags.flt = n;

@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 14:18:37 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/20 15:02:08 by galiza           ###   ########.fr       */
+/*   Updated: 2019/07/14 15:11:02 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static unsigned long long int	if_n(t_flags flags, va_list ap)
 	else if (flags.flags & HH)
 		n = (unsigned char)va_arg(ap, int);
 	else
-		n =va_arg(ap, unsigned int);
+		n = va_arg(ap, unsigned int);
 	return (n);
 }
 

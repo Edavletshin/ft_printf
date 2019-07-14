@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 20:20:54 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/10 14:50:31 by galiza           ###   ########.fr       */
+/*   Updated: 2019/07/14 12:51:55 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		ft_putun_nbr(unsigned long long int n)
 }
 
 int		ft_putun_nbr_base_not_print(unsigned long long int n, unsigned int base,
-							 const char *digits)
+		const char *digits)
 {
 	int						res;
 
