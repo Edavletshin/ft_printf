@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 18:28:42 by galiza            #+#    #+#             */
-/*   Updated: 2019/07/14 15:17:37 by galiza           ###   ########.fr       */
+/*   Updated: 2019/07/14 19:07:38 by galiza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include <stdio.h> // Удалить!!!
 # define ABS(Value)	((Value < 0) ? (-Value) : (Value))
 
 # define HH			1
@@ -104,7 +103,8 @@ void				ft_putnstr(char const *s, int n);
 void				ft_putendl(char const *s);
 int					ft_putnbr_base(long long int n, int base,
 					const char *digits);
-int					ft_putun_nbr_base_not_print(unsigned long long int n, unsigned int base,
+int					ft_putun_nbr_base_not_print(unsigned long long int n,
+		unsigned int base,
 					const char *digits);
 int					ft_putun_nbr_base(unsigned long long int n,
 					unsigned int base, const char *digits);
