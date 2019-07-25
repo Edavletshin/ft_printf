@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include <stdio.h>
+#include <stdio.h>
 # define ABS(Value)	((Value < 0) ? (-Value) : (Value))
 
 # define HH			1
@@ -161,6 +161,8 @@ int					ft_get_len(t_flags flags);
 int					size(long long int i, int base);
 int					un_size(unsigned long long int i, int base);
 int					print_miss(t_flags flags, int len, int strlen);
+char				*clean_fract_one(char *ftitoa);
+
 /*
 ** ----------------------------- Printf norminette------------------------------
 */

@@ -57,3 +57,18 @@ void				print_u_norm(t_flags *flags, unsigned long long int n)
 	(*flags).plus = 0;
 	(*flags).blank = 0;
 }
+
+char				*clean_fract_one(char *ftitoa)
+{
+	int				q;
+	char			*res;
+
+	ftitoa++;
+	q = ft_strlen(ftitoa);
+	res = malloc(sizeof(char) * (q - 1));
+	res = ft_memcpy(res, ftitoa, (q - 1));
+	ftitoa--;
+	free(ftitoa);
+	return (res);
+
+}

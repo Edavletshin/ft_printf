@@ -14,16 +14,18 @@
 
 static char		*create_line(char *ftitoa, int time, char *line)
 {
-	char		*res;
+	char		*rest;
 
-	res = malloc(sizeof(char) * (time * 9) + 1);
+	ftitoa = clean_fract_one(ftitoa);
+	rest = malloc(sizeof(char) * (time * 9) + 1);
+	ft_bzero(rest, (time * 9) + 1);
 	if (line)
-		res = ft_strcat(res, line);
-	res = ft_strcat(res, ftitoa);
+		rest = ft_strcat(rest, line);
+	rest = ft_strcat(rest, ftitoa);
 	free(ftitoa);
 	if (line)
 		free(line);
-	return (res);
+	return (rest);
 }
 
 static int		check_long_str(char *line, int accur)
@@ -98,6 +100,7 @@ int				print_fract(long double n, int len, int accur)
 		n -= copy;
 		if (n < 0)
 			n *= -1;
+		n += 1.0;
 		n *= 1000000000;
 		line = create_line(ft_itoa(n), time, line);
 		check = check_long_str(line, accur);
