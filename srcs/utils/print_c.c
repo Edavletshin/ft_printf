@@ -18,7 +18,10 @@ int			ft_print_c(const char *fmt, va_list ap, int curr_chr, int len)
 	int		c;
 
 	ft_get_keys(fmt, curr_chr, &flags);
-	flags.t_dot = 0;
+	if (flags.t_dot < 0)
+		return (ft_printf_aux(fmt, ap, curr_chr + flags.len + 1,
+				print_miss(flags, len, 0) + 1));
+		flags.t_dot = 0;
 	c = va_arg(ap, int);
 	if (((fmt[curr_chr + flags.l_int] == '0' && ft_atoi(fmt + curr_chr +
 	flags.l_int) != 0) || (fmt[curr_chr + flags.l_int - 1] == '+' &&

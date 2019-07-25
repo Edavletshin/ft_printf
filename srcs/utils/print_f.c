@@ -12,9 +12,9 @@
 
 #include "libft.h"
 
-static double	if_n(t_flags flags, va_list ap)
+static long double	if_n(t_flags flags, va_list ap)
 {
-	double		n;
+	long double		n;
 
 	if (flags.flags & LLL)
 		n = va_arg(ap, long double);
@@ -27,9 +27,9 @@ static double	if_n(t_flags flags, va_list ap)
 	return (n);
 }
 
-static int		if_zero(t_flags flags, int len, int accur, double n)
+static int			if_zero(t_flags flags, int len, int accur, double n)
 {
-	int			s;
+	int				s;
 
 	s = ft_get_len(flags);
 	s += (size((int)n, flags.base));
@@ -41,9 +41,9 @@ static int		if_zero(t_flags flags, int len, int accur, double n)
 	return (len);
 }
 
-static int		if_minus(t_flags flags, int len, int accur, double n)
+static int			if_minus(t_flags flags, int len, int accur, long double n)
 {
-	int			s;
+	int				s;
 
 	s = ft_get_len(flags);
 	s += (size((int)n, flags.base));
@@ -68,7 +68,7 @@ static int		if_minus(t_flags flags, int len, int accur, double n)
 	return (len);
 }
 
-int				if_long(const char *fmt, int curr_chr, t_flags flags)
+int					if_long(const char *fmt, int curr_chr, t_flags flags)
 {
 	if (((fmt[curr_chr + flags.l_int] == '0' && ft_atoi(fmt + curr_chr
 	+ flags.l_int) != 0) || (fmt[curr_chr + flags.l_int - 1] == '+' &&
@@ -79,17 +79,19 @@ int				if_long(const char *fmt, int curr_chr, t_flags flags)
 		return (0);
 }
 
-int				ft_print_f(const char *fmt, va_list ap, int curr_chr, int len)
+int					ft_print_f(const char *fmt, va_list ap,
+					int curr_chr, int len)
 {
-	t_flags		flags;
-	double		n;
-	int			accur;
+	t_flags			flags;
+	long double		n;
+	int				accur;
 
 	ft_get_keys(fmt, curr_chr, &flags);
-	if (flags.t_dot <= 0 && flags.t_dot != -1)
+	if (flags.t_dot < 0)
+		return (ft_printf_aux(fmt, ap, curr_chr + flags.len + 1,
+				print_miss(flags, len, 0)));
+		if (flags.t_dot <= 0 && flags.t_dot != -1)
 		accur = 6;
-	else if (flags.t_dot == -1)
-		accur = 0;
 	else
 		accur = flags.t_dot;
 	flags.t_dot = 0;

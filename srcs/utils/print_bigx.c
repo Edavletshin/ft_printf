@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 14:18:37 by galiza            #+#    #+#             */
-/*   Updated: 2019/07/14 19:05:48 by galiza           ###   ########.fr       */
+/*   Updated: 2019/07/24 18:39:19 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,10 @@ int								ft_print_bigx(const char *fmt, va_list ap,
 	unsigned long long int		n;
 
 	ft_get_keys(fmt, curr_chr, &flags);
-	flags.base = 16;
+	if (flags.t_dot < 0)
+		return (ft_printf_aux(fmt, ap, curr_chr
+		+ flags.len + 1, print_miss(flags, len, 0)));
+		flags.base = 16;
 	n = if_n(flags, ap);
 	flags.un_tot = n;
 	s = ft_get_len(flags);

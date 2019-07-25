@@ -64,13 +64,18 @@ static int						if_else(t_flags flags, int len, int s,
 {
 	len += ft_print_spaces(flags, s);
 	len += ft_print_keys(flags, s);
-	if (flags.h_tag && n)
+	if (flags.h_tag && n && flags.t_dot < 1)
 	{
 		ft_putchar('0');
 		len++;
 	}
 	if (flags.t_dot > 0 || (n != 0) || !flags.dot)
 		len += ft_putun_nbr_base(ABS(n), 8, "01234567");
+	if (flags.dot && !n && flags.h_tag)
+	{
+		ft_putchar('0');
+		len++;
+	}
 	return (len);
 }
 
@@ -84,9 +89,13 @@ int								ft_print_o(const char *fmt, va_list ap,
 	ft_get_keys(fmt, curr_chr, &flags);
 	flags.base = 8;
 	n = if_n(flags, ap);
-	flags.un_tot = n;
-	flags.plus = 0;
-	s = ft_get_len(flags);
+	if (flags.t_dot < 0)
+	{
+		len = print_o_norminnet(flags, len, n);
+		return (ft_printf_aux(fmt, ap, curr_chr + flags.len +
+		1, len));
+	}
+	s = print_o_norm(&flags, 0, n);
 	if (flags.h_tag && n)
 		s++;
 	if (if_long(fmt, curr_chr, flags) && !flags.dot)

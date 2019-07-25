@@ -12,9 +12,9 @@
 
 #include "libft.h"
 
-static char	*create_line(char *ftitoa, int time, char *line)
+static char		*create_line(char *ftitoa, int time, char *line)
 {
-	char	*res;
+	char		*res;
 
 	res = malloc(sizeof(char) * (time * 9) + 1);
 	if (line)
@@ -26,9 +26,9 @@ static char	*create_line(char *ftitoa, int time, char *line)
 	return (res);
 }
 
-static int	check_long_str(char *line, int accur)
+static int		check_long_str(char *line, int accur)
 {
-	int		q;
+	int			q;
 
 	q = ft_strlen(line) - 1;
 	if (q > accur)
@@ -43,10 +43,10 @@ static int	check_long_str(char *line, int accur)
 	return (1);
 }
 
-static int	putstr_frac(char *line, int accur)
+static int		putstr_frac(char *line, int accur)
 {
-	int		q;
-	char	sym;
+	int			q;
+	char		sym;
 
 	q = 0;
 	while (line[q] && q < accur)
@@ -58,10 +58,10 @@ static int	putstr_frac(char *line, int accur)
 	return (q);
 }
 
-static void	rouding(char *line, int accur)
+static void		rouding(char *line, int accur)
 {
-	int		q;
-	int		flag;
+	int			q;
+	int			flag;
 
 	flag = 0;
 	q = ft_strlen(line) - 1;
@@ -82,12 +82,12 @@ static void	rouding(char *line, int accur)
 	}
 }
 
-int			print_fract(long double n, int len, int accur)
+int				print_fract(long double n, int len, int accur)
 {
-	char	*line;
-	int		check;
-	int		copy;
-	int		time;
+	char		*line;
+	int			check;
+	long int	copy;
+	int			time;
 
 	check = 1;
 	time = 1;
@@ -96,6 +96,8 @@ int			print_fract(long double n, int len, int accur)
 	{
 		copy = n;
 		n -= copy;
+		if (n < 0)
+			n *= -1;
 		n *= 1000000000;
 		line = create_line(ft_itoa(n), time, line);
 		check = check_long_str(line, accur);

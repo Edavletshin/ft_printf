@@ -67,10 +67,11 @@ int								ft_print_u(const char *fmt, va_list ap,
 	unsigned long long int		n;
 
 	ft_get_keys(fmt, curr_chr, &flags);
-	n = if_n(flags, ap);
-	flags.un_tot = n;
-	flags.plus = 0;
-	flags.blank = 0;
+	if (flags.t_dot < 0)
+		return (ft_printf_aux(fmt, ap, curr_chr + flags.len + 1,
+		print_miss(flags, len, 0)));
+		n = if_n(flags, ap);
+	print_u_norm(&flags, n);
 	s = ft_get_len(flags);
 	if (if_long(fmt, curr_chr, flags) && !flags.dot)
 		flags.zero = 1;
