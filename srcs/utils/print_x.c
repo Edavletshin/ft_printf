@@ -83,8 +83,8 @@ int								ft_print_x(const char *fmt, va_list ap,
 
 	ft_get_keys(fmt, curr_chr, &flags);
 	if (flags.t_dot < 0)
-		return (ft_printf_aux(fmt, ap, curr_chr + flags.len +
-		1, print_miss(flags, len, 0)));
+		return (ft_printf_aux(fmt, ap, curr_chr + flags.len
+		+ 1, print_miss(flags, len, 0)));
 		flags.base = 16;
 	n = if_n(flags, ap);
 	flags.un_tot = n;
